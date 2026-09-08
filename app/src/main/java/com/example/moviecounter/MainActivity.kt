@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,6 +54,15 @@ fun MovieCounter(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(16.dp)
             )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Componente 2: OutlinedTextField
+        OutlinedTextField(
+            value = "",
+            onValueChange = {},
+            label = { Text("Ingrese un nombre") }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "You have added $count movies.")
