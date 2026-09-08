@@ -13,11 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.moviecounter.ui.theme.MovieCounterTheme
@@ -43,7 +45,7 @@ fun MovieCounter(modifier: Modifier = Modifier) {
         modifier = modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Componente 1: Card
+        // Componente 1: Card original en main
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,11 +59,17 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Componente 2: OutlinedTextField
+        // Componente 2: OutlinedTextField con estilos en rama main
         OutlinedTextField(
             value = "",
             onValueChange = {},
-            label = { Text("Ingrese un nombre") }
+            label = { Text("Ingrese el nombre de la película") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color(0xFF6200EE),
+                unfocusedBorderColor = Color.Gray
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
