@@ -1,5 +1,5 @@
 package com.example.moviecounter
-// Editado por Companero B en local
+// Conflicto resuelto: Integración de cambios de Compañero A y Compañero B
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -97,4 +97,8 @@ fun MovieCounterPreview() {
     MovieCounterTheme {
         MovieCounter()
     }
+<<<<<<< HEAD
 }   
+=======
+}
+>>>>>>> 9a135ea826b8a9d4ea1996f0b159f955969e9529
