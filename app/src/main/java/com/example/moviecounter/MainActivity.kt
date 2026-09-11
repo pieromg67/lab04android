@@ -1,5 +1,5 @@
 package com.example.moviecounter
-
+// Editado por Companero B en local
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -97,4 +97,4 @@ fun MovieCounterPreview() {
     MovieCounterTheme {
         MovieCounter()
     }
-}
+}   
