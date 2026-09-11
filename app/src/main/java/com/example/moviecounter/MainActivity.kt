@@ -1,5 +1,5 @@
 package com.example.moviecounter
-// Conflicto resuelto: Integración de cambios de Compañero A y Compañero B
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +19,10 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,12 +47,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MovieCounter(modifier: Modifier = Modifier) {
-    val count = 0
+    // Definición del estado observable usando remember y mutableStateOf
+    var count by remember { mutableStateOf(0) }
+
     Column(
         modifier = modifier.padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Componente 1: Card (Actualizado de la rama Upgrading-component-1)
+        // Componente Card
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +75,7 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Componente 2: OutlinedTextField (Actualizado de la rama main)
+        // Componente OutlinedTextField
         OutlinedTextField(
             value = "",
             onValueChange = {},
@@ -83,9 +89,13 @@ fun MovieCounter(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Contador dinámico y Botón con incremento de estado
         Text(text = "You have added $count movies.")
+
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { /* Acción */ }) {
+
+        Button(onClick = { count++ }) {
             Text("Add Movie")
         }
     }
@@ -93,12 +103,8 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun MovieCounterPreview() {
+fun PreviewMovieCounter() {
     MovieCounterTheme {
         MovieCounter()
     }
-<<<<<<< HEAD
-}   
-=======
 }
->>>>>>> 9a135ea826b8a9d4ea1996f0b159f955969e9529
