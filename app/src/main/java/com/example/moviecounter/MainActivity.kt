@@ -15,7 +15,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,8 +45,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MovieCounter(modifier: Modifier = Modifier) {
-    // Definición del estado observable usando remember y mutableStateOf
+    // Variables de estado
     var count by remember { mutableStateOf(0) }
+    var movieName by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.padding(16.dp),
@@ -75,27 +74,31 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Componente OutlinedTextField
+        // Campo de texto vinculado al estado movieName
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
-            label = { Text("Ingrese el nombre de la película") },
+            value = movieName,
+            onValueChange = { movieName = it },
+            label = { Text("Movie Name") },
             singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF6200EE),
-                unfocusedBorderColor = Color.Gray
-            )
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Contador dinámico y Botón con incremento de estado
+        // Contador de películas
         Text(text = "You have added $count movies.")
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { count++ }) {
+        // Botón con validación de texto e incremento
+        Button(
+            onClick = {
+                if (movieName.isNotBlank()) {
+                    count++
+                    movieName = ""
+                }
+            }
+        ) {
             Text("Add Movie")
         }
     }
