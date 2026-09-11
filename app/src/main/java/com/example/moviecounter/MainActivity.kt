@@ -20,7 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,9 +45,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MovieCounter(modifier: Modifier = Modifier) {
-    // Variables de estado
-    var count by remember { mutableStateOf(0) }
-    var movieName by remember { mutableStateOf("") }
+    // Estado persistente ante rotaciones o recreación de la Activity
+    var count by rememberSaveable { mutableStateOf(0) }
+    var movieName by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = modifier.padding(16.dp),
@@ -74,7 +74,7 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Campo de texto vinculado al estado movieName
+        // Campo de texto vinculado al estado persistente
         OutlinedTextField(
             value = movieName,
             onValueChange = { movieName = it },
@@ -90,7 +90,7 @@ fun MovieCounter(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Botón con validación de texto e incremento
+        // Botón con incremento
         Button(
             onClick = {
                 if (movieName.isNotBlank()) {
