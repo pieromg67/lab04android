@@ -1,5 +1,5 @@
 package com.example.moviecounter
-
+// Editado por Companero A en remoto
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
